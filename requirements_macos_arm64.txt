@@ -1,0 +1,12 @@
+numpy
+pandas
+scikit-learn
+scipy
+matplotlib
+torch==1.12.1
+torchvision
+torchaudio
+pyg
+pytorch-lightning==1.4.9
+tensorboard
+wandb

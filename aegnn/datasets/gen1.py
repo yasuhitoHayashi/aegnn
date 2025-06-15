@@ -5,6 +5,7 @@ import numpy as np
 import pickle
 import sys
 import torch
+import aegnn
 
 from torch_geometric.data import Data
 from torch_geometric.nn.pool import radius_graph
@@ -83,7 +84,7 @@ class Gen1(EventDataModule):
             sample_dict['sample_idx'] = sample_idx
 
             # Graph generation (edges w.r.t. sub-sampled graph).
-            device = torch.device(torch.cuda.current_device())
+            device = aegnn.utils.default_device()
             sample.pos[:, 2] = normalize_time(sample.pos[:, 2])
             edge_index = radius_graph(sample.pos.to(device), r=params["r"], max_num_neighbors=params["d_max"])
             sample_dict['edge_index'] = edge_index.cpu()

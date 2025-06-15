@@ -4,6 +4,7 @@ import logging
 import numpy as np
 import os
 import torch
+import aegnn
 
 from torch_geometric.data import Data
 from torch_geometric.nn.pool import radius_graph
@@ -72,7 +73,8 @@ class NCaltech101(EventDataModule):
         all_p = all_p.astype(np.float64)
         all_p[all_p == 0] = -1
         events = np.column_stack((all_x, all_y, all_ts, all_p))
-        events = torch.from_numpy(events).float().cuda()
+        device = aegnn.utils.default_device()
+        events = torch.from_numpy(events).float().to(device)
 
         x, pos = events[:, -1:], events[:, :3]   # x = polarity, pos = spatio-temporal position
         return Data(x=x, pos=pos)
@@ -114,7 +116,7 @@ class NCaltech101(EventDataModule):
         rf_wo_ext, _ = os.path.splitext(rf)
 
         # Load data from raw file. If the according loaders are available, add annotation, label and class id.
-        device = "cpu"  # torch.device(torch.cuda.current_device())
+        device = aegnn.utils.default_device()
         data_obj = load_func(rf).to(device)
         data_obj.file_id = os.path.basename(rf)
         if (label := read_label(rf)) is not None:
