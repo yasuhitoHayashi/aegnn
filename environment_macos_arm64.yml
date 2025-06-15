@@ -1,0 +1,22 @@
+name: aegnn_macos
+channels:
+  - pyg
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - numpy
+  - pandas
+  - scikit-learn
+  - scipy
+  - matplotlib
+  - pytorch=1.12.1
+  - torchvision
+  - torchaudio
+  - pyg
+  - pip
+  - pip:
+      - pytorch-lightning==1.4.9
+      - tensorboard
+      - wandb

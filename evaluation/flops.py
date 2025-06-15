@@ -111,7 +111,8 @@ def run_experiments(dm, args, experiments: List[int], num_trials: int, device: t
 
         # Fully reset run to ensure independence between subsequent experiments.
         del model  # fully delete model
-        torch.cuda.empty_cache()  # clear memory
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()  # clear memory
 
     print(f"Results are logged in {output_file}")
     return results_df
