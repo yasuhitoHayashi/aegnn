@@ -25,10 +25,15 @@ conda env create --file=environment.yml
 ```
 
 If you want to run the code on Apple&nbsp;Silicon (M1/M2) without CUDA support,
-use the provided conda environment for macOS:
+create a Python 3.8 environment with **pyenv** and install the dependencies from
+`requirements_macos_arm64.txt`:
 
-```
-conda env create --file=environment_macos_arm64.yml
+```bash
+brew install pyenv pyenv-virtualenv  # if not already installed
+pyenv install 3.8.16
+pyenv virtualenv 3.8.16 aegnn
+pyenv activate aegnn
+pip install -r requirements_macos_arm64.txt
 ```
 
 ## Processing Pipeline
