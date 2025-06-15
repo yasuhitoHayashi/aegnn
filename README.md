@@ -34,7 +34,6 @@ pyenv install 3.8.16
 pyenv virtualenv 3.8.16 aegnn
 pyenv activate aegnn
 pip install -r requirements_macos_arm64.txt
-```
 
 ## Processing Pipeline
 We evaluated our approach on three datasets. [NCars](http://www.prophesee.ai/dataset-n-cars/), 
